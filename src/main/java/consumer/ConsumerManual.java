@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class ConsumerManual {
     public static void main(String[] args) throws IOException {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(KafkaUtils.loadConsumerProperties(false));
-        consumer.subscribe(Arrays.asList("first"));//消费者订阅主题
+        consumer.subscribe(Arrays.asList(KafkaUtils.getTopic()));//消费者订阅主题
 
         while (true) {
             //消费者拉取数据

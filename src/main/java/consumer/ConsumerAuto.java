@@ -15,7 +15,7 @@ public class ConsumerAuto {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(KafkaUtils.loadConsumerProperties(true));
 
         // 可以订阅多个topic
-        consumer.subscribe(Arrays.asList("first"));
+        consumer.subscribe(Arrays.asList(KafkaUtils.getTopic()));
 
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);

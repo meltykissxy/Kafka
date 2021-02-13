@@ -55,4 +55,8 @@ public class KafkaUtils {
         props.put("value.deserializer", prop.getProperty("value.deserializer"));
         return props;
     }
+
+    public static String getTopic() throws IOException {
+        return PropertiesUtil.load("Properties.properties").getProperty("Kafka.topic");
+    }
 }

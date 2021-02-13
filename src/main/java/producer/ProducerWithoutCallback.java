@@ -20,7 +20,7 @@ public class ProducerWithoutCallback {
 
         // 第二步：生产数据
         for (int i = 0; i < 100; i++) {
-            producer.send(new ProducerRecord<String, String>("first", Integer.toString(i), Integer.toString(i)));
+            producer.send(new ProducerRecord<String, String>(KafkaUtils.getTopic(), Integer.toString(i), Integer.toString(i)));
         }
 
         // 第三步：关闭
