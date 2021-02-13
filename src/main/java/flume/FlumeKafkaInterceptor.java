@@ -14,9 +14,9 @@ public class FlumeKafkaInterceptor implements Interceptor {
     }
 
     /**
-     * 如果包含"apple"的数据，发送到first主题
-     * 如果包含"google"的数据，发送到second主题
-     * 其他的数据发送到third主题
+     * 如果包含"apple"的数据，发送到apple主题
+     * 如果包含"google"的数据，发送到google主题
+     * 其他的数据发送到other主题
      * @param event
      * @return
      */
@@ -27,12 +27,11 @@ public class FlumeKafkaInterceptor implements Interceptor {
         //2.获取event的body
         String body = new String(event.getBody());
         if(body.contains("apple")){
-            headers.put("topic","first");
+            headers.put("topic","apple");
         }else if(body.contains("google")){
-            headers.put("topic","second");
+            headers.put("topic","google");
         }
         return event;
-
     }
 
     @Override
@@ -82,7 +81,7 @@ public class FlumeKafkaInterceptor implements Interceptor {
  *
  * #Interceptor
  * a1.sources.r1.interceptors = i1
- * a1.sources.r1.interceptors.i1.type = com.atguigu.kafka.flumeInterceptor.FlumeKafkaInterceptor$MyBuilder
+ * a1.sources.r1.interceptors.i1.type = flume.FlumeKafkaInterceptor$MyBuilder
  *
  * # # Use a channel which buffers events in memory
  * a1.channels.c1.type = memory
